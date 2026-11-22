@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gilded Shadow — The Meridian Vault Heist</title>
+<style>
+  html, body { margin: 0; padding: 0; background: #070a14; height: 100%; }
+  body {
+    display: flex; align-items: center; justify-content: center;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+  #wrap { text-align: center; }
+  canvas {
+    display: block; width: 1024px; height: 640px;
+    background: #0d1322; border: 1px solid #2a3352;
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.6);
+    image-rendering: auto;
+  }
+  #hint { color: #8a93b2; font-size: 13px; margin-top: 10px; }
+  #hint b { color: #e8b93e; }
+</style>
+</head>
+<body>
+<div id="wrap">
+  <canvas id="game" width="1024" height="640"></canvas>
+  <div id="hint"><b>GILDED SHADOW</b> — WASD move &middot; Shift sneak &middot; E interact &middot; Q smoke &middot; R EMP &middot; Click throws a coin &middot; P pause &middot; M mute</div>
+</div>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+// Levels: three museum floors, each a data table — walls, patrols, cameras,
+// loot, keycards and the escape route. Later floors add doors, guards and cameras.
+
+function borderWalls() {
+  return [
+    { x: 0, y: 52, w: 1024, h: 14 },
+    { x: 0, y: 626, w: 1024, h: 14 },
+    { x: 0, y: 52, w: 14, h: 588 },
+    { x: 1010, y: 52, w: 14, h: 588 },
+  ];
+}
+
+export const LEVELS = [
+  {
+    id: 1,
+    name: 'The Gallery',
+    brief: 'The Meridian Diamond sits on a pedestal in the east gallery. Two guards, one camera. Learn their rhythm, then take it.',
+    parTime: 150,
+    spawn: { x: 512, y: 580 },
+    exit: { x: 40, y: 540, w: 70, h: 56 },
+    diamond: { x: 930, y: 120 },
+    walls: [
+      ...borderWalls(),
+      { x: 240, y: 180, w: 44, h: 44 },
+      { x: 740, y: 180, w: 44, h: 44 },
+      { x: 240, y: 430, w: 44, h: 44 },
+      { x: 740, y: 430, w: 44, h: 44 },
+      { x: 430, y: 150, w: 170, h: 26 },
+      { x: 430, y: 470, w: 170, h: 26 },
+      { x: 330, y: 300, w: 120, h: 22 },
+      { x: 580, y: 300, w: 120, h: 22 },
+    ],
+    doors: [],
+    shadowZones: [
+      { x: 30, y: 72, w: 150, h: 120 },
+      { x: 850, y: 470, w: 140, h: 130 },
+      { x: 440, y: 300, w: 150, h: 90 },
+    ],
+    guards: [
+      { waypoints: [[200, 140], [820, 140]], speed: 62 },
+      { waypoints: [[820, 520], [200, 520]], speed: 62 },
+    ],
+    cameras: [
+      { x: 512, y: 70, baseAngle: Math.PI / 2, sweep: 0.7, speed: 0.9, phase: 0 },
+    ],
+    loot: [
+      { x: 120, y: 330, value: 500, kind: 'painting', label: 'Portrait' },
+      { x: 512, y: 330, value: 750, kind: 'gem', label: 'Ruby' },
+      { x: 900, y: 350, value: 250, kind: 'cash', label: 'Cash' },
+      { x: 120, y: 150, value: 500, kind: 'painting', label: 'Landscape' },
+    ],
+    keycards: [],
+    terminals: [{ x: 180, y: 580 }],
+  },
+  {
+    id: 2,
+    name: 'The Vault Floor',
+    brief: 'The vault wing is sealed. The keycard is in the west gallery — or slip through the south corridor and skip the door entirely.',
+    parTime: 180,
+    spawn: { x: 200, y: 580 },
+    exit: { x: 40, y: 540, w: 70, h: 56 },
+    diamond: { x: 930, y: 120 },
+    walls: [
+      ...borderWalls(),
+      { x: 496, y: 58, w: 24, h: 240 },
+      { x: 496, y: 362, w: 24, h: 140 },
+      { x: 180, y: 180, w: 44, h: 44 },
+      { x: 180, y: 430, w: 44, h: 44 },
+      { x: 780, y: 180, w: 44, h: 44 },
+      { x: 780, y: 430, w: 44, h: 44 },
+      { x: 640, y: 300, w: 150, h: 24 },
+    ],
+    doors: [
+      { x: 496, y: 298, w: 24, h: 64, cardId: 'A', label: 'Vault Door' },
+    ],
+    shadowZones: [
+      { x: 30, y: 72, w: 140, h: 110 },
+      { x: 840, y: 480, w: 150, h: 120 },
+      { x: 540, y: 520, w: 180, h: 80 },
+    ],
+    guards: [
+      { waypoints: [[120, 140], [420, 140]], speed: 66 },
+      { waypoints: [[600, 520], [920, 520]], speed: 66 },
+      { waypoints: [[700, 150], [700, 450]], speed: 60 },
+    ],
+    cameras: [
+      { x: 260, y: 70, baseAngle: Math.PI / 2, sweep: 0.6, speed: 1.0, phase: 0 },
+      { x: 760, y: 70, baseAngle: Math.PI / 2, sweep: 0.6, speed: 0.8, phase: 2.1 },
+    ],
+    loot: [
+      { x: 120, y: 330, value: 500, kind: 'painting', label: 'Portrait' },
+      { x: 400, y: 200, value: 750, kind: 'gem', label: 'Sapphire' },
+      { x: 640, y: 480, value: 250, kind: 'cash', label: 'Cash' },
+      { x: 920, y: 330, value: 500, kind: 'painting', label: 'Still Life' },
+      { x: 700, y: 150, value: 750, kind: 'gem', label: 'Emerald' },
+    ],
+    keycards: [{ x: 120, y: 520, cardId: 'A', label: 'Keycard A' }],
+    terminals: [{ x: 300, y: 80 }],
+  },
+  {
+    id: 3,
+    name: 'The Meridian Vault',
+    brief: 'Three zones, two sealed doors, four guards and three cameras. The diamond is in the east vault. This is the one they write about.',
+    parTime: 210,
+    spawn: { x: 150, y: 580 },
+    exit: { x: 40, y: 540, w: 70, h: 56 },
+    diamond: { x: 940, y: 110 },
+    walls: [
+      ...borderWalls(),
+      { x: 344, y: 58, w: 22, h: 200 },
+      { x: 344, y: 318, w: 22, h: 180 },
+      { x: 674, y: 58, w: 22, h: 280 },
+      { x: 674, y: 398, w: 22, h: 104 },
+      { x: 150, y: 200, w: 40, h: 40 },
+      { x: 512, y: 400, w: 40, h: 40 },
+      { x: 850, y: 200, w: 40, h: 40 },
+      { x: 850, y: 450, w: 40, h: 40 },
+      { x: 420, y: 300, w: 140, h: 22 },
+      { x: 760, y: 330, w: 140, h: 22 },
+    ],
+    doors: [
+      { x: 344, y: 258, w: 22, h: 60, cardId: 'A', label: 'Vault Door A' },
+      { x: 674, y: 338, w: 22, h: 60, cardId: 'B', label: 'Vault Door B' },
+    ],
+    shadowZones: [
+      { x: 30, y: 72, w: 130, h: 100 },
+      { x: 400, y: 500, w: 160, h: 100 },
+      { x: 860, y: 480, w: 130, h: 120 },
+    ],
+    guards: [
+      { waypoints: [[100, 150], [300, 150]], speed: 70 },
+      { waypoints: [[512, 150], [512, 450]], speed: 66 },
+      { waypoints: [[750, 520], [950, 520]], speed: 70 },
+      { waypoints: [[950, 150], [750, 150]], speed: 78 },
+    ],
+    cameras: [
+      { x: 180, y: 70, baseAngle: Math.PI / 2, sweep: 0.6, speed: 1.1, phase: 0 },
+      { x: 512, y: 70, baseAngle: Math.PI / 2, sweep: 0.7, speed: 0.9, phase: 1.4 },
+      { x: 850, y: 70, baseAngle: Math.PI / 2, sweep: 0.6, speed: 1.2, phase: 2.6 },
+    ],
+    loot: [
+      { x: 120, y: 330, value: 500, kind: 'painting', label: 'Portrait' },
+      { x: 300, y: 120, value: 750, kind: 'gem', label: 'Ruby' },
+      { x: 450, y: 520, value: 250, kind: 'cash', label: 'Cash' },
+      { x: 600, y: 250, value: 500, kind: 'painting', label: 'Seascape' },
+      { x: 780, y: 120, value: 750, kind: 'gem', label: 'Topaz' },
+      { x: 920, y: 400, value: 250, kind: 'cash', label: 'Cash' },
+    ],
+    keycards: [
+      { x: 180, y: 520, cardId: 'A', label: 'Keycard A' },
+      { x: 512, y: 140, cardId: 'B', label: 'Keycard B' },
+    ],
+    terminals: [{ x: 200, y: 80 }, { x: 800, y: 580 }],
+  },
+];
